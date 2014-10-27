@@ -1,0 +1,282 @@
+Last login: Sun Oct 19 17:17:09 on ttys000
+Minsoos-MacBook-Air:~ MinsooAir$ cd ..
+Minsoos-MacBook-Air:Users MinsooAir$ ls
+MinsooAir	Shared
+Minsoos-MacBook-Air:Users MinsooAir$ cd MinsooAir
+Minsoos-MacBook-Air:~ MinsooAir$ ls
+=			Movies
+Applications		Music
+Desktop			Pictures
+Documents		Public
+Downloads		README.md
+Dropbox			octave-workspace
+Library			treehouse
+Minsoos-MacBook-Air:~ MinsooAir$ cd Dropbox
+Minsoos-MacBook-Air:Dropbox MinsooAir$ cd a02
+Minsoos-MacBook-Air:a02 MinsooAir$ ls
+Gemfile		README.md	spec
+Gemfile.lock	TODO.md
+INSTRUCTIONS.md	lib
+Minsoos-MacBook-Air:a02 MinsooAir$ bundle exec rspec spec/dec_spec.rb
+/Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/configuration.rb:896:in `load': cannot load such file -- /Users/MinsooAir/Dropbox/a02/spec/dec_spec.rb (LoadError)
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/configuration.rb:896:in `block in load_spec_files'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/configuration.rb:896:in `each'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/configuration.rb:896:in `load_spec_files'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/command_line.rb:22:in `run'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/runner.rb:80:in `run'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/runner.rb:17:in `block in autorun'
+Minsoos-MacBook-Air:a02 MinsooAir$ bundle exec rspec spec/deck_spec.rb
+
+Deck
+  does not expose its cards directly
+  ::all_cards
+    returns all cards without duplicates (FAILED - 1)
+    count
+      example at ./spec/deck_spec.rb:8 (FAILED - 2)
+  #initialize
+    by default fills itself with 52 cards (FAILED - 3)
+    can be initialized with an array of cards (FAILED - 4)
+  #take
+    takes cards off the top of the deck (FAILED - 5)
+    removes cards from deck on take (FAILED - 6)
+    doesn't allow you to take more cards than are in the deck (FAILED - 7)
+  #return
+    returns cards to the deck (FAILED - 8)
+    does not destroy the passed array
+    adds new cards to the bottom of the deck (FAILED - 9)
+
+Failures:
+
+  1) Deck::all_cards returns all cards without duplicates
+     Failure/Error: .map { |card| [card.suit, card.value] }
+     NoMethodError:
+       undefined method `map' for nil:NilClass
+     # ./spec/deck_spec.rb:12:in `block (3 levels) in <top (required)>'
+
+  2) Deck::all_cards count 
+     Failure/Error: its(:count) { should == 52 }
+     NoMethodError:
+       undefined method `count' for nil:NilClass
+     # ./spec/deck_spec.rb:8:in `block (3 levels) in <top (required)>'
+
+  3) Deck#initialize by default fills itself with 52 cards
+     Failure/Error: expect(deck.count).to eq(52)
+       
+       expected: 52
+            got: nil
+       
+       (compared using ==)
+     # ./spec/deck_spec.rb:30:in `block (3 levels) in <top (required)>'
+
+  4) Deck#initialize can be initialized with an array of cards
+     Failure/Error: expect(deck.count).to eq(3)
+       
+       expected: 3
+            got: nil
+       
+       (compared using ==)
+     # ./spec/deck_spec.rb:35:in `block (3 levels) in <top (required)>'
+
+  5) Deck#take takes cards off the top of the deck
+     Failure/Error: expect(deck.take(1)).to eq(cards[0..0])
+       
+       expected: [#<Card:0x007fb9228d02b0 @suit=:spades, @value=:king>]
+            got: nil
+       
+       (compared using ==)
+     # ./spec/deck_spec.rb:50:in `block (3 levels) in <top (required)>'
+
+  6) Deck#take removes cards from deck on take
+     Failure/Error: expect(deck.count).to eq(1)
+       
+       expected: 1
+            got: nil
+       
+       (compared using ==)
+     # ./spec/deck_spec.rb:56:in `block (3 levels) in <top (required)>'
+
+  7) Deck#take doesn't allow you to take more cards than are in the deck
+     Failure/Error: expect do
+       expected Exception with "not enough cards" but nothing was raised
+     # ./spec/deck_spec.rb:60:in `block (3 levels) in <top (required)>'
+
+  8) Deck#return returns cards to the deck
+     Failure/Error: expect(deck.count).to eq(6)
+       
+       expected: 6
+            got: nil
+       
+       (compared using ==)
+     # ./spec/deck_spec.rb:75:in `block (3 levels) in <top (required)>'
+
+  9) Deck#return adds new cards to the bottom of the deck
+     Failure/Error: expect(deck.take(1)).to eq(more_cards[0..0])
+       
+       expected: [#<Card:0x007fb92225ff48 @suit=:hearts, @value=:four>]
+            got: nil
+       
+       (compared using ==)
+     # ./spec/deck_spec.rb:88:in `block (3 levels) in <top (required)>'
+
+Finished in 0.00781 seconds
+11 examples, 9 failures
+
+Failed examples:
+
+rspec ./spec/deck_spec.rb:10 # Deck::all_cards returns all cards without duplicates
+rspec ./spec/deck_spec.rb:8 # Deck::all_cards count 
+rspec ./spec/deck_spec.rb:28 # Deck#initialize by default fills itself with 52 cards
+rspec ./spec/deck_spec.rb:33 # Deck#initialize can be initialized with an array of cards
+rspec ./spec/deck_spec.rb:49 # Deck#take takes cards off the top of the deck
+rspec ./spec/deck_spec.rb:54 # Deck#take removes cards from deck on take
+rspec ./spec/deck_spec.rb:59 # Deck#take doesn't allow you to take more cards than are in the deck
+rspec ./spec/deck_spec.rb:73 # Deck#return returns cards to the deck
+rspec ./spec/deck_spec.rb:84 # Deck#return adds new cards to the bottom of the deck
+Minsoos-MacBook-Air:a02 MinsooAir$ bundle exec rspec spec/deck_spec.rb
+
+Deck
+  does not expose its cards directly
+  ::all_cards
+    returns all cards without duplicates (FAILED - 1)
+    count
+      example at ./spec/deck_spec.rb:8 (FAILED - 2)
+  #initialize
+    by default fills itself with 52 cards (FAILED - 3)
+    can be initialized with an array of cards (FAILED - 4)
+  #take
+    takes cards off the top of the deck (FAILED - 5)
+    removes cards from deck on take (FAILED - 6)
+    doesn't allow you to take more cards than are in the deck (FAILED - 7)
+  #return
+    returns cards to the deck (FAILED - 8)
+    does not destroy the passed array
+    adds new cards to the bottom of the deck (FAILED - 9)
+
+Failures:
+
+  1) Deck::all_cards returns all cards without duplicates
+     Failure/Error: .map { |card| [card.suit, card.value] }
+     NoMethodError:
+       undefined method `map' for nil:NilClass
+     # ./spec/deck_spec.rb:12:in `block (3 levels) in <top (required)>'
+
+  2) Deck::all_cards count 
+     Failure/Error: its(:count) { should == 52 }
+     NoMethodError:
+       undefined method `count' for nil:NilClass
+     # ./spec/deck_spec.rb:8:in `block (3 levels) in <top (required)>'
+
+  3) Deck#initialize by default fills itself with 52 cards
+     Failure/Error: expect(deck.count).to eq(52)
+       
+       expected: 52
+            got: nil
+       
+       (compared using ==)
+     # ./spec/deck_spec.rb:30:in `block (3 levels) in <top (required)>'
+
+  4) Deck#initialize can be initialized with an array of cards
+     Failure/Error: expect(deck.count).to eq(3)
+       
+       expected: 3
+            got: nil
+       
+       (compared using ==)
+     # ./spec/deck_spec.rb:35:in `block (3 levels) in <top (required)>'
+
+  5) Deck#take takes cards off the top of the deck
+     Failure/Error: expect(deck.take(1)).to eq(cards[0..0])
+       
+       expected: [#<Card:0x007fec448d02b0 @suit=:spades, @value=:king>]
+            got: nil
+       
+       (compared using ==)
+     # ./spec/deck_spec.rb:50:in `block (3 levels) in <top (required)>'
+
+  6) Deck#take removes cards from deck on take
+     Failure/Error: expect(deck.count).to eq(1)
+       
+       expected: 1
+            got: nil
+       
+       (compared using ==)
+     # ./spec/deck_spec.rb:56:in `block (3 levels) in <top (required)>'
+
+  7) Deck#take doesn't allow you to take more cards than are in the deck
+     Failure/Error: expect do
+       expected Exception with "not enough cards" but nothing was raised
+     # ./spec/deck_spec.rb:60:in `block (3 levels) in <top (required)>'
+
+  8) Deck#return returns cards to the deck
+     Failure/Error: expect(deck.count).to eq(6)
+       
+       expected: 6
+            got: nil
+       
+       (compared using ==)
+     # ./spec/deck_spec.rb:75:in `block (3 levels) in <top (required)>'
+
+  9) Deck#return adds new cards to the bottom of the deck
+     Failure/Error: expect(deck.take(1)).to eq(more_cards[0..0])
+       
+       expected: [#<Card:0x007fec4425ff48 @suit=:hearts, @value=:four>]
+            got: nil
+       
+       (compared using ==)
+     # ./spec/deck_spec.rb:88:in `block (3 levels) in <top (required)>'
+
+Finished in 0.00617 seconds
+11 examples, 9 failures
+
+Failed examples:
+
+rspec ./spec/deck_spec.rb:10 # Deck::all_cards returns all cards without duplicates
+rspec ./spec/deck_spec.rb:8 # Deck::all_cards count 
+rspec ./spec/deck_spec.rb:28 # Deck#initialize by default fills itself with 52 cards
+rspec ./spec/deck_spec.rb:33 # Deck#initialize can be initialized with an array of cards
+rspec ./spec/deck_spec.rb:49 # Deck#take takes cards off the top of the deck
+rspec ./spec/deck_spec.rb:54 # Deck#take removes cards from deck on take
+rspec ./spec/deck_spec.rb:59 # Deck#take doesn't allow you to take more cards than are in the deck
+rspec ./spec/deck_spec.rb:73 # Deck#return returns cards to the deck
+rspec ./spec/deck_spec.rb:84 # Deck#return adds new cards to the bottom of the deck
+Minsoos-MacBook-Air:a02 MinsooAir$ bundle exec rspec spec/deck_spec.rb
+/Users/MinsooAir/Dropbox/a02/spec/deck_spec.rb:2:in `require': /Users/MinsooAir/Dropbox/a02/lib/deck.rb:14: syntax error, unexpected keyword_end, expecting end-of-input (SyntaxError)
+	from /Users/MinsooAir/Dropbox/a02/spec/deck_spec.rb:2:in `<top (required)>'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/configuration.rb:896:in `load'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/configuration.rb:896:in `block in load_spec_files'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/configuration.rb:896:in `each'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/configuration.rb:896:in `load_spec_files'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/command_line.rb:22:in `run'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/runner.rb:80:in `run'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/runner.rb:17:in `block in autorun'
+Minsoos-MacBook-Air:a02 MinsooAir$ bundle exec rspec spec/deck_spec.rb
+/Users/MinsooAir/Dropbox/a02/spec/deck_spec.rb:2:in `require': /Users/MinsooAir/Dropbox/a02/lib/deck.rb:16: syntax error, unexpected keyword_end, expecting end-of-input (SyntaxError)
+	from /Users/MinsooAir/Dropbox/a02/spec/deck_spec.rb:2:in `<top (required)>'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/configuration.rb:896:in `load'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/configuration.rb:896:in `block in load_spec_files'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/configuration.rb:896:in `each'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/configuration.rb:896:in `load_spec_files'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/command_line.rb:22:in `run'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/runner.rb:80:in `run'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/runner.rb:17:in `block in autorun'
+Minsoos-MacBook-Air:a02 MinsooAir$ bundle exec rspec spec/deck_spec.rb
+/Users/MinsooAir/Dropbox/a02/spec/deck_spec.rb:2:in `require': /Users/MinsooAir/Dropbox/a02/lib/deck.rb:31: syntax error, unexpected keyword_end, expecting end-of-input (SyntaxError)
+	from /Users/MinsooAir/Dropbox/a02/spec/deck_spec.rb:2:in `<top (required)>'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/configuration.rb:896:in `load'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/configuration.rb:896:in `block in load_spec_files'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/configuration.rb:896:in `each'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/configuration.rb:896:in `load_spec_files'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/command_line.rb:22:in `run'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/runner.rb:80:in `run'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/runner.rb:17:in `block in autorun'
+Minsoos-MacBook-Air:a02 MinsooAir$ bundle exec rspec spec/deck_spec.rb
+/Users/MinsooAir/Dropbox/a02/spec/deck_spec.rb:2:in `require': /Users/MinsooAir/Dropbox/a02/lib/deck.rb:18: syntax error, unexpected keyword_end, expecting end-of-input (SyntaxError)
+	from /Users/MinsooAir/Dropbox/a02/spec/deck_spec.rb:2:in `<top (required)>'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/configuration.rb:896:in `load'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/configuration.rb:896:in `block in load_spec_files'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/configuration.rb:896:in `each'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/configuration.rb:896:in `load_spec_files'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/command_line.rb:22:in `run'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/runner.rb:80:in `run'
+	from /Users/MinsooAir/.rvm/gems/ruby-2.0.0-p481@railstutorial_rails_4_0/gems/rspec-core-2.14.7/lib/rspec/core/runner.rb:17:in `block in autorun'
+Minsoos-MacBook-Air:a02 MinsooAir$ 
